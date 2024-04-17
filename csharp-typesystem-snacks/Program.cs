@@ -15,12 +15,10 @@ namespace csharp_typesystem_snacks
              Il software stampa il maggiore.
             ------------------------*/
             {
-                int numb1;
-                int numb2;
                 Console.WriteLine("Inserisci il primo numero");
-                numb1 = Convert.ToInt32(Console.ReadLine());
+                int numb1 = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Inserisci il secondo numero");
-                numb2 = Convert.ToInt32(Console.ReadLine());
+                int numb2 = Convert.ToInt32(Console.ReadLine());
                 if (numb1 > numb2)
                 {
                     Console.WriteLine($"Il numero maggiore è {numb1}");
@@ -41,12 +39,10 @@ namespace csharp_typesystem_snacks
             Il software stampa prima la parola più corta, poi la parola più lunga.
             ------------------------*/
             { 
-                string word1;
-                string word2;
                 Console.WriteLine("Scrivi una parola");
-                word1 = Console.ReadLine();
+                string word1 = Console.ReadLine();
                 Console.WriteLine("Scrivi un'altra parola");
-                word2 = Console.ReadLine();
+                string word2 = Console.ReadLine();
                 if (word1.Length > word2.Length)
                 {
                     Console.WriteLine($"La parola più corta è {word2} mentre la più lunga è {word1}");
@@ -100,9 +96,8 @@ namespace csharp_typesystem_snacks
             Se il numero inserito è pari, stampa il numero, se è dispari, stampa il numero successivo.
             ------------------------*/
             {
-                int number;
                 Console.WriteLine("Inserisci un numero");
-                number = Convert.ToInt32(Console.ReadLine());
+                int number = Convert.ToInt32(Console.ReadLine());
                 if (number % 2 == 0)
                 {
                     Console.WriteLine($"Questo è il numero: {number}");
