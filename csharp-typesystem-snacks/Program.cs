@@ -29,7 +29,7 @@ namespace csharp_typesystem_snacks
                 }
                 else
                 {
-                    Console.WriteLine($"I numeri sono uguali");
+                    Console.WriteLine("I numeri sono uguali");
                 }
             }
 
