@@ -2,6 +2,7 @@
 using System.Runtime.ConstrainedExecution;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace csharp_typesystem_snacks
 {
@@ -9,6 +10,7 @@ namespace csharp_typesystem_snacks
     {
         static void Main(string[] args)
         {
+            
             /*------------------------
              Snack 1
              L’utente inserisce due numeri in successione.
@@ -61,14 +63,15 @@ namespace csharp_typesystem_snacks
             Il programma stampa la somma di tutti i numeri inseriti.
             ------------------------*/
             { 
-                int[] userNumbers = new int[10];
+
+                //int[] userNumbers = new int[10]; non necessario
                 int sum = 0;
 
                 for (int i = 0; i < 10; i++)
                 {
                     Console.WriteLine("Inserisci un numero:");
-                    userNumbers[i] = Convert.ToInt32(Console.ReadLine());
-                    sum += userNumbers[i];
+                    int userNumber = Convert.ToInt32(Console.ReadLine());
+                    sum += userNumber;
                 }
                 Console.WriteLine($"La somma di tutti i numeri inseriti è: {sum}");
             }
@@ -78,15 +81,15 @@ namespace csharp_typesystem_snacks
             Calcola la somma e la media dei numeri da 2 a 10.
             ------------------------*/
             {
-                int[] numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+                //int[] numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]; non necessario
                 int sum = 0;
-                int avg;
-                foreach (int num in numbers)
+                int avg = 0;
+                for (int i=2; i<=10; i++)
                 {
-                    sum += num;
+                    sum += i;
+                    avg = sum / 9;
                 }
                 Console.WriteLine($"La somma dei numeri è {sum}");
-                avg = sum / numbers.Length;
                 Console.WriteLine($"La media dei numeri è {avg}");
             }
 
@@ -180,6 +183,13 @@ namespace csharp_typesystem_snacks
             Continua a chiedere i numeri all’utente e a inserirli nell’array,
             fino a quando la somma degli elementi è minore di 50.
             ------------------------*/
+
+            /*-------------------------
+            CORREZIONE: 
+            nel while devi mettere anche una condizione per uscire in caso si raggiungesse il 50esimo index dell'array,
+            altrimenti potrei inserire per 50 volte zero e poi il loop cercherebbe di inserire numeri al 51esimo posto dell'array facendo crashare il programma
+            (Bonus/Extra: pensa a come potresti gestire questa eventualità per fare in modo che effettivamente il programma continui finché la somma non è 50)
+             --------------------------*/
             {
                 int[] numbers = new int[50];
                 int sum = 0;
@@ -187,15 +197,29 @@ namespace csharp_typesystem_snacks
 
                 Console.WriteLine("Inserisci il primo numero:");
                 numbers[index] = Convert.ToInt32(Console.ReadLine());
+
+                while (numbers[index] <= 0)
+                {
+                    Console.WriteLine("Inserisci un numero maggiore di 0:");
+                    numbers[index] = Convert.ToInt32(Console.ReadLine());
+                }
+
                 sum += numbers[index];
                 index++;
 
-                while (sum < 50)
+                while (sum < 50 && index < 50)
                 {
                     Console.WriteLine("Inserisci un altro numero:");
                     numbers[index] = Convert.ToInt32(Console.ReadLine());
-                    sum += numbers[index];
-                    index++;
+                    if (numbers[index] <= 0)
+                    {
+                        Console.WriteLine("Il numero deve essere maggiore di zero");
+                    }
+                    else
+                    {
+                        sum += numbers[index];
+                        index++;
+                    }
                 }
 
                 Console.WriteLine($"La somma dei numeri inseriti è maggiore o uguale a 50. Somma {sum}");
